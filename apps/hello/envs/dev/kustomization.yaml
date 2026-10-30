@@ -7,7 +7,7 @@ resources:
 images:
   - name: hello
     newName: ghcr.io/rogeriocastro-sre/k8s-lab-app
-    newTag: PENDENTE
+    newTag: sha-2746f14
 patches:
   - target:
       kind: HTTPRoute
