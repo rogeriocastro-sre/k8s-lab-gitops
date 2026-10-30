@@ -1,0 +1,13 @@
+# Promoção para produção: PR alterando newTag para uma tag já validada em dev
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: hello-prod
+resources:
+  - ../../base
+images:
+  - name: hello
+    newName: ghcr.io/rogeriocastro-sre/k8s-lab-app
+    newTag: PENDENTE
+replicas:
+  - name: hello
+    count: 2

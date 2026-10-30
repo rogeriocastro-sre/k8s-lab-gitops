@@ -1,0 +1,24 @@
+# Governança no Argo CD: apps do lab só podem vir deste repositório
+# e só podem ser implantadas nos namespaces hello-*
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: lab
+  namespace: argocd
+spec:
+  description: Apps de estudo do k8s-lab
+  sourceRepos:
+    - https://github.com/rogeriocastro-sre/k8s-lab-gitops.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: hello-*
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
